@@ -1,23 +1,27 @@
-@interface UIKeyboardLayoutStar
--(void)touchUp:(id)arg1 executionContext:(id)arg2;
-@end
+%hook UITextView
 
-@interface UIKeyboardTaskQueue : NSObject
-@end
+-(void)insertText:(id)arg1{
+    NSString *newTextToInsert = [NSString stringWithFormat:@"%@%@", arg1, arg1];
+    if (arc4random_uniform(10) == 1){
+        %orig(newTextToInsert);
+    } else {
+        %orig;
+    }
+    
+}
 
-@interface UIKeyboardTaskExecutionContext : NSObject
--(UIKeyboardTaskQueue *)executionQueue;
--(id)initWithExecutionQueue:(id)arg1;
-@end
+%end
 
+%hook UITextField
 
-%hook UIKeyboardLayoutStar
-
--(void)touchUp:(id)arg1 executionContext:(UIKeyboardTaskExecutionContext *)arg2{
-	NSLog(@"DANAUS TESTING: %@", [arg2 executionQueue]);
-	%orig;
-	UIKeyboardTaskExecutionContext *newContext = [[%c(UIKeyboardTaskExecutionContext) alloc] initWithExecutionQueue:[arg2 executionQueue]];
-	%orig(arg1, newContext);
+-(void)insertText:(id)arg1{
+    NSString *newTextToInsert = [NSString stringWithFormat:@"%@%@", arg1, arg1];
+    if (arc4random_uniform(10) == 1){
+        %orig(newTextToInsert);
+    } else {
+        %orig;
+    }
+    
 }
 
 %end

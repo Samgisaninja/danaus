@@ -1,0 +1,10 @@
+Package: com.samgisaninja.danaus
+Name: danaus
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Samg_is_a_Ninja
+Author: Samg_is_a_Ninja
+Section: Tweaks
+Version: 0.0.1-28+debug
+Installed-Size: 136

@@ -6,8 +6,10 @@ TWEAK_NAME = danaus
 
 danaus_FILES = Tweak.x
 danaus_CFLAGS = -fobjc-arc
+danaus_EXTRA_FRAMEWORKS += Cephei
 
-export TARGET = iphone:13.3:12.0
-ARCHS = arm64 arm64e
+ARCHS = armv7 arm64 arm64e
 
 include $(THEOS_MAKE_PATH)/tweak.mk
+SUBPROJECTS += danausprefs
+include $(THEOS_MAKE_PATH)/aggregate.mk
